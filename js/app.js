@@ -1,5 +1,8 @@
 $(document).ready(function(){
   
+  var target = generateRandomTargetNumber();
+  console.log('target = ', target);
+
   /*--- Display information modal box ---*/
   $(".what").click(function(){
     $(".overlay").fadeIn(1000);
@@ -16,14 +19,23 @@ $(document).ready(function(){
 
   /* Return user guess number */
   function getGuess() {
-    ( "#guessButton" ).click(function() {
-      return ("#userGuess").val();
+    $("#guessButton").click(function() {
+      var guess = $("#userGuess").val();
+      console.log('guess = ', guess);
+
+      var difference = getDifference(target, guess);
+      console.log('difference = ', difference);
+
+      var rangeHint = getRange(difference);
+      console.log('rangeHint = ', rangeHint);
+
+      $('feedback').text(rangeHint);
     });
   }
 
   /* Return difference between secret number and guess */
   function getDifference(target, guess) {
-    return(abs(target - guess));
+    return(Math.abs(target - guess));
   }
 
 
@@ -44,17 +56,16 @@ $(document).ready(function(){
     else {
       return "You Win!";
     }
-  })
+  }
 
-
-  rangeHint = getRange();
-  target = generateRandomTargetNumber();    
-  guess = getGuess();
-  difference = getDifference();
+  // rangeHint = getRange();
+  // target = generateRandomTargetNumber();    
+  // guess = getGuess();
+  // difference = getDifference();
   /* print hint to feedback div */
 
-  document.getElementById("feedback").innerHTML = produceMessage() {
-    return rangeHint;
-  }
+  // document.getElementById("feedback").innerHTML = produceMessage() {
+  //   return rangeHint;
+  // }
 });
 
