@@ -38,7 +38,7 @@ $(document).ready(function(){
     else if (difference > 10 & difference < 29) {
       return "Warm";
     }
-    else if (difference > 0 & difference < 9 {
+    else if (difference > 0 & difference < 9) {
       return "Really Warm";
     }
     else {
