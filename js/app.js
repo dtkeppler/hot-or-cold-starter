@@ -6,6 +6,7 @@ $(document).ready(function(){
   /*--- Display information modal box ---*/
   $(".what").click(function(){
     $(".overlay").fadeIn(1000);
+    
   });
 
   /*--- Hide information modal box ---*/
@@ -17,9 +18,13 @@ $(document).ready(function(){
     return Math.floor(Math.random() * 100) + 1;
   }
 
+  $('#guessButton').click(function(e) {
+    e.preventDefault();
+    getGuess();
+  });
+
   /* Return user guess number */
   function getGuess() {
-    $("#guessButton").click(function() {
       var guess = $("#userGuess").val();
       console.log('guess = ', guess);
 
@@ -29,8 +34,9 @@ $(document).ready(function(){
       var rangeHint = getRange(difference);
       console.log('rangeHint = ', rangeHint);
 
-      $('feedback').text(rangeHint);
-    });
+      $('#feedback').text(rangeHint);
+
+      $('#guessList').append('<li class="list-item">' + $('#userGuess').val() + '</li>');
   }
 
   /* Return difference between secret number and guess */
@@ -57,6 +63,8 @@ $(document).ready(function(){
       return "You Win!";
     }
   }
+
+
 
   // rangeHint = getRange();
   // target = generateRandomTargetNumber();    
